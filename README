@@ -1,0 +1,80 @@
+======================================
+Troll Auth
+
+Somewhat Simple and Lightweight Authorization System 
+slightly based on ion-auth (although they perform very different tasks)
+
+by Claus Paludan
+======================================
+
+Hi,
+
+I have been looking around for an authorization system for codeigniter, but so far I seem to have only been able to find authentication systems. 
+So - what is the difference you might say? 
+An authentication system (like Ion-auth) in its base functionality helps decide if a user is who she/he claims to be. This is often accomplished by providing
+a userid and a password the system can verify exist in its database.
+
+But what if you need to control access to various part of your application? What if different users needs different kinds of access to the same resources?
+This is what an authorization system does. It assumes that some other part made sure that the user is allowed access to the application in the first place, once inside - the 
+authorization system handles access and levels of access to the system. Examples could be:
+
+is user XXX authorized to access resource YYY??
+is user XXX authorized to perform action ZZZ??
+is user XXX authorized to perform action ZZZ on resource YYY??
+
+This library only attempts to help with the authorization part. All that is needed from the authentication part is a unique userid (integer).
+
+Beside for me using the Ion-auth README and the Ion-auth library to get the code formatting to look proper there really isn't much Ion-auth in this library. In fact for them to work together,
+modifications needs to be done in Ion-auth as it only supports one group per user. I will provide instructions on how to modify Ion-auth to work with this library. 
+
+You should be aware however that you will have to update Ion-auth by hand when new updates arrive - wise men DO take backup before they embark on such a task ;)
+
+
+DOCUMENTATION:
+There is no documentation at the moment - just this README and the comments in the library and demo controller.
+
+This library is based on two things - being a member of one or more groups and groups(or users) having access to different resources.
+
+- Groups
+Groups are perhaps the easiest part of the library to understand - for it to work you can create different groups like admin, guest, member and so forth. 
+Then you can add the users to one or more of these groups. In your application you can then check if the user is a member of a given group and select the proper code
+to execute based on that. 
+
+This is however somewhat limited in use although it can bring you pretty far if your needs are small.
+
+- Resources
+Resources are a different kind of beast and the complexity rises with them. 
+
+INSTALLATION:
+Just copy the files from this package to the correspoding folder in your 
+application folder.  For example, copy Troll_auth/config/troll_auth.php to 
+system/application/config/troll_auth.php. 
+
+After that add this to /application/config/constants.php:
+/*
+|--------------------------------------------------------------------------
+| Troll Auth access levels
+|--------------------------------------------------------------------------
+|
+*/
+define("READWRITE",6);
+define("WRITE"    ,4);
+define("READ"     ,2);
+define("NO_ACCESS",0);
+
+
+USING THE LIBRARY:   
+In the package you will find example usage code in the controllers and views 
+folders.  The example code isn't the most beautiful code you'll ever see but 
+it'll show you how to use the library and it's nice and generic so it doesn't 
+require a MY_controller or anything but it will be easy to add render() methods 
+if needed since there is only one load->view() per controller method.
+
+
+Feel free to send me an email if you have any problems.  
+
+
+Thanks,
+-Claus Paludan
+ claus.paludan@gmail.com
+ @benedmunds 
