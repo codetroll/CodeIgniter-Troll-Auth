@@ -24,8 +24,17 @@ class Troll_auth extends Controller {
 
 		//list the users
 		$this->data['users'] = $this->ion_auth->get_users_array();
-		$this->load->view('auth/index', $this->data);
+		$this->load->view('troll_auth/index', $this->data);
+	}
+	
+	// list all group functions and currently existing groups
+	function groups()
+	{
 	}
 
+	// list all resource functions and currently existing resources
+	function resources()
+	{
+	}
 
 }

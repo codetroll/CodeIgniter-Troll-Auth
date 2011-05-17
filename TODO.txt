@@ -1,0 +1,4 @@
+TO-DO LIST
+- create sample data and populate the db with it
+- create sample controller
+- create sample views 
