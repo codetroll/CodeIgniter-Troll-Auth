@@ -1,4 +1,9 @@
 TO-DO LIST
 - create sample data and populate the db with it
 - create sample controller
-- create sample views 
+- create sample views
+
+
+FUTURE STUFF
+- handle access to controllers
+	could it be handled to add controler_name to the resource table and verify against that?? We don't have a resource_id on the controller.... so.. how to approach this

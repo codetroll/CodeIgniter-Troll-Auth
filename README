@@ -35,6 +35,7 @@ DOCUMENTATION:
 There is no documentation at the moment - just this README and the comments in the library and demo controller.
 
 This library is based on two things - being a member of one or more groups and groups(or users) having access to different resources.
+The base token of the library is a unique user id - in this implemenation it is an int(9), you can however change it to ie an email address if this suits you better.
 
 - Groups
 Groups are perhaps the easiest part of the library to understand - for it to work you can create different groups like admin, guest, member and so forth. 
@@ -49,11 +50,14 @@ if ($this->troll_auth->is_user_member_of_group($user_id,$group_id))
 	... do that ....
 }
 
+Since a user can be a member of more than one group you can use this to permit access to various things based on group membership. Furthermore different groups can have different
+access levels to various resources.
 
 This is however somewhat limited in use although it can bring you pretty far if your needs are small.
 
 - Resources
-
+Resources makes things a bit more complex. Each resource is identified by a resource_id. This id must be present in what ever you want to protect. So if you have
+a forum for example and want to control access to the various toplevel forums the toplevel forum requires that you add a resource_id field to that table.
 
 INSTALLATION:
 Just copy the files from this package to the correspoding folder in your 
@@ -71,6 +75,8 @@ define("READWRITE",6);
 define("WRITE"    ,4);
 define("READ"     ,2);
 define("NO_ACCESS",0);
+
+
 
 
 USING THE LIBRARY:   
