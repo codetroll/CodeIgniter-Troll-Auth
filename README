@@ -1,7 +1,7 @@
 ======================================
 Troll Auth
 
-Somewhat Simple and Lightweight Authorization System 
+Somewhat Simple and Lightweight Authorisation System
 slightly based on ion-auth (although they perform very different tasks)
 
 by Claus Paludan
@@ -9,20 +9,20 @@ by Claus Paludan
 
 Hi,
 
-I have been looking around for an authorization system for codeigniter, but so far I seem to have only been able to find authentication systems. 
+I have been looking around for an authorisation system for codeigniter, but so far I seem to have only been able to find authentication systems.
 So - what is the difference you might say? 
 An authentication system (like Ion-auth) in its base functionality helps decide if a user is who she/he claims to be. This is often accomplished by providing
 a userid and a password the system can verify exist in its database.
 
 But what if you need to control access to various part of your application? What if different users needs different kinds of access to the same resources?
-This is what an authorization system does. It assumes that some other part made sure that the user is allowed access to the application in the first place, once inside - the 
-authorization system handles access and levels of access to the system. Examples could be:
+This is what an authorisation system does. It assumes that some other part made sure that the user is allowed access to the application in the first place, once inside - the
+authorisation system handles access and levels of access to the system. Examples could be:
 
-is user XXX authorized to access resource YYY??
-is user XXX authorized to perform action ZZZ??
-is user XXX authorized to perform action ZZZ on resource YYY??
+is user XXX authorised to access resource YYY??
+is user XXX authorised to perform action ZZZ??
+is user XXX authorised to perform action ZZZ on resource YYY??
 
-This library only attempts to help with the authorization part. All that is needed from the authentication part is a unique userid (integer).
+This library only attempts to help with the authorisation part. All that is needed from the authentication part is a unique userid (integer).
 
 Beside for me using the Ion-auth README and the Ion-auth library to get the code formatting to look proper there really isn't much Ion-auth in this library.
 In fact for them to work together, modifications needs to be done in Ion-auth as it only supports one group per user.

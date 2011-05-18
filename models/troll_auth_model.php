@@ -121,6 +121,8 @@ class Troll_auth_model extends CI_Model
 	 **/
     function group_access_granted($resource_id,$group_id)
 	{
+		// keep this for reference until CI code has been tested
+
         $query = "";
         $query .= " select distinct * ";
         $query .= " from accgrants grants, ";
@@ -150,7 +152,6 @@ class Troll_auth_model extends CI_Model
 		echo $this->db->last_query();
 		echo "<br />access_level : ".$query->result()->row()->access_level;
 		return $query->result()->row()->access_level;
-
     }
 
 
