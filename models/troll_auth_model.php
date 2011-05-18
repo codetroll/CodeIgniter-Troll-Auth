@@ -96,7 +96,7 @@ class Troll_auth_model extends CI_Model
 	 *
 	 * @param access_level
 	 * @return boolean
-	 * @author Claus
+	 * @author Claus Paludan
 	 **/
     function has_write_access($access_level)
 	{
@@ -109,17 +109,18 @@ class Troll_auth_model extends CI_Model
     }
 
 	/**
-	 * This function returns returns access level granted to group
+	 * This function returns returns access level granted to group for resource
 	 *         6 - read/write
      *         4 - read
      *         2 - write
      *         0 - no access
 	 *
-	 * @param access_level
-	 * @return boolean
-	 * @author Claus
+	 * @param int resource_id
+	 * @param int group_id
+	 * @return int access level
+	 * @author Claus Paludan
 	 **/
-    function group_access_granted($resource_id,$group_id)
+    function get_group_access_granted($resource_id,$group_id)
 	{
 		// keep this for reference until CI code has been tested
 
@@ -153,6 +154,44 @@ class Troll_auth_model extends CI_Model
 		echo "<br />access_level : ".$query->result()->row()->access_level;
 		return $query->result()->row()->access_level;
     }
+
+	/**
+	 * This function returns returns access level granted to user for resource
+	 *         6 - read/write
+     *         4 - read
+     *         2 - write
+     *         0 - no access
+	 *
+	 * @param int resource_id
+	 * @param int user_id
+	 * @return int access level
+	 * @author Claus Paludan
+	 **/
+	function get_user_access_granted($resource_id,$user_id)
+	{
+		if (empty($resource_id) || $resource_id == 0) return 0; //
+	    if (empty($user_id)) {
+	        $user_id = 20; // default bruger
+	    }
+		$query = "";
+	    $query .= " select distinct * from accgrants grants,";
+	    $query .= " accgroups groups,";
+	    $query .= " accmember member,";
+	    $query .= " accresources resource";
+	    $query .= " where grants.resource_id=resource.resource_id";
+	    $query .= " and ressource.resource_id=$resource_id";
+	    $query .= " and (grants.user_id=$user_id";
+	    $query .= " or (grants.group_id=groups.group_id";
+	    $query .= " and groups.group_id=member.group_id";
+	    $query .= " and member.user_id = $user_id)";
+	    $query .= ") order by access_level desc";
+//		$query .= "limit 1";
+//    echo "<br />[$query]";
+
+		$access = mysql_fetch_array($select);
+		$accesslevel = $access['numAccLevel'];
+		return $accesslevel;
+	}
 
 
 	/**
