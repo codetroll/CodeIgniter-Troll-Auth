@@ -24,8 +24,9 @@ is user XXX authorized to perform action ZZZ on resource YYY??
 
 This library only attempts to help with the authorization part. All that is needed from the authentication part is a unique userid (integer).
 
-Beside for me using the Ion-auth README and the Ion-auth library to get the code formatting to look proper there really isn't much Ion-auth in this library. In fact for them to work together,
-modifications needs to be done in Ion-auth as it only supports one group per user. I will provide instructions on how to modify Ion-auth to work with this library. 
+Beside for me using the Ion-auth README and the Ion-auth library to get the code formatting to look proper there really isn't much Ion-auth in this library.
+In fact for them to work together, modifications needs to be done in Ion-auth as it only supports one group per user.
+I will provide instructions on how to modify Ion-auth to work with this library. 
 
 You should be aware however that you will have to update Ion-auth by hand when new updates arrive - wise men DO take backup before they embark on such a task ;)
 
@@ -38,12 +39,21 @@ This library is based on two things - being a member of one or more groups and g
 - Groups
 Groups are perhaps the easiest part of the library to understand - for it to work you can create different groups like admin, guest, member and so forth. 
 Then you can add the users to one or more of these groups. In your application you can then check if the user is a member of a given group and select the proper code
-to execute based on that. 
+to execute based on that.
+
+if ($this->troll_auth->is_user_member_of_group($user_id,$group_id))
+{
+	... do this....
+} else if
+{
+	... do that ....
+}
+
 
 This is however somewhat limited in use although it can bring you pretty far if your needs are small.
 
 - Resources
-Resources are a different kind of beast and the complexity rises with them. 
+
 
 INSTALLATION:
 Just copy the files from this package to the correspoding folder in your 

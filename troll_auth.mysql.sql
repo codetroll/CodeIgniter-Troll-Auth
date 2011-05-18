@@ -13,93 +13,93 @@
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sb_accgrants`
+-- Table structure for table `accgrants`
 -- 
 
-CREATE TABLE `sb_accgrants` (
-  `user_id` int(18) default '-1',
-  `group_id` int(18) default '-1',
-  `resource_id` int(18) NOT NULL default '0',
+CREATE TABLE `accgrants` (
+  `user_id` int(9) default '-1',
+  `group_id` int(9) default '-1',
+  `resource_id` int(9) NOT NULL default '0',
   `access_level` tinyint(2) NOT NULL default '0',
   KEY `user_id` (`group_id`),
   KEY `resource_id` (`resource_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 -- 
--- Dumping data for table `sb_accgrants`
+-- Dumping data for table `accgrants`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sb_accgroups`
+-- Table structure for table `accgroups`
 -- 
 
-CREATE TABLE `sb_accgroups` (
-  `id` int(18) NOT NULL auto_increment,
+CREATE TABLE `accgroups` (
+  `id` int(9) NOT NULL auto_increment,
   `name` varchar(100) collate utf8_danish_ci NOT NULL,
   `active` tinyint(1) NOT NULL default '1',
   `watch` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=173 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=1 ;
 
 -- 
--- Dumping data for table `sb_accgroups`
+-- Dumping data for table `accgroups`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sb_accmember`
+-- Table structure for table `accmember`
 -- 
 
-CREATE TABLE `sb_accmember` (
-  `user_id` int(18) NOT NULL default '0',
-  `group_id` int(18) NOT NULL default '0',
+CREATE TABLE `accmember` (
+  `user_id` int(9) NOT NULL default '0',
+  `group_id` int(9) NOT NULL default '0',
   UNIQUE KEY `LiegeVassalCombo` (`user_id`,`group_id`),
   KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 -- 
--- Dumping data for table `sb_accmember`
+-- Dumping data for table `accmember`
 -- 
 
-INSERT INTO `sb_accmember` VALUES (1, 1);
+INSERT INTO `accmember` VALUES (1, 1);
 
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sb_accmember_back`
+-- Table structure for table `accmember_back`
 -- 
 
-CREATE TABLE `sb_accmember_back` (
-  `user_id` int(18) NOT NULL default '0',
-  `group_id` int(18) NOT NULL default '0',
+CREATE TABLE `accmember_back` (
+  `user_id` int(9) NOT NULL default '0',
+  `group_id` int(9) NOT NULL default '0',
   UNIQUE KEY `LiegeVassalCombo` (`user_id`,`group_id`),
   KEY `group_id` (`numAccGrpId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 -- 
--- Dumping data for table `sb_accmember_back`
+-- Dumping data for table `accmember_back`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Table structure for table `sb_accresources`
+-- Table structure for table `accresources`
 -- 
 
-CREATE TABLE `sb_accresources` (
-  `id` int(18) NOT NULL auto_increment,
+CREATE TABLE `accresources` (
+  `id` int(9) NOT NULL auto_increment,
   `name` varchar(100) collate utf8_danish_ci NOT NULL,
   `active` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci PACK_KEYS=0 AUTO_INCREMENT=1 ;
 
 -- 
--- Dumping data for table `sb_accresources`
+-- Dumping data for table `accresources`
 -- 
 
