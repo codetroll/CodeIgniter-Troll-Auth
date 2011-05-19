@@ -1,3 +1,5 @@
+THIS IS IN VERY MUCH IN DEVELOPMENT - DO NOT USE
+
 ======================================
 Troll Auth
 
@@ -58,6 +60,9 @@ This is however somewhat limited in use although it can bring you pretty far if 
 - Resources
 Resources makes things a bit more complex. Each resource is identified by a resource_id. This id must be present in what ever you want to protect. So if you have
 a forum for example and want to control access to the various toplevel forums the toplevel forum requires that you add a resource_id field to that table.
+
+** how do we handle authorisation to access controllers?
+** can we auto add existing controllers to resources?
 
 INSTALLATION:
 Just copy the files from this package to the correspoding folder in your 

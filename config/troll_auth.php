@@ -17,17 +17,17 @@
 	/**
 	 * Tables.
 	 **/
-	$config['tables']['accgrants']			= 'accgrants';
-	$config['tables']['accgroups']			= 'accgroups';
-	$config['tables']['accmember']			= 'accmember';
-	$config['tables']['accmember_back']		= 'accmember_back';
-	$config['tables']['accresources']		= 'accresources';
+	$config['tables']['grants']			= 'accgrants';
+	$config['tables']['groups']			= 'accgroups';
+	$config['tables']['members']		= 'accmember';
+	$config['tables']['members_back']	= 'accmember_back';
+	$config['tables']['resources']		= 'accresources';
 	
 	/**
 	 * Default groups
 	 */
-	$config['default_admin_group']			= 1;
-	$config['default_user_group']			= 2;
+	$config['default_admin_group']		= 1;
+	$config['default_user_group']		= 2;
 
 	/**
 	 * Default access level

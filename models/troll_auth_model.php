@@ -142,9 +142,9 @@ class Troll_auth_model extends CI_Model
 //        return $access_level;
 
 		$this->db->distinct();
-		$this->db->from($this->tables['accgrants']);
-		$this->db->from($this->tables['accgroups']);
-		$this->db->from($this->tables['accresources']);
+		$this->db->from($this->tables['grants']);
+		$this->db->from($this->tables['groups']);
+		$this->db->from($this->tables['resources']);
 		$this->db->where('ressource.resource_id',$resource_id);
 		$this->db->where('grants.resource_id','ressource.resource_id');
 		$this->db->where('grants.group_id',$group_id);
@@ -217,7 +217,7 @@ class Troll_auth_model extends CI_Model
 				'resource_id' => $resource_id,
 				'access_level' => $access_level
 			);
-			$this->db->insert($this->tables['accgrants'],$data);
+			$this->db->insert($this->tables['grants'],$data);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -247,7 +247,7 @@ class Troll_auth_model extends CI_Model
 				'resource_id' => $resource_id,
 				'access_level' => $access_level
 			);
-			$this->db->insert($this->tables['accgrants'],$data);
+			$this->db->insert($this->tables['grants'],$data);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -268,7 +268,7 @@ class Troll_auth_model extends CI_Model
 		{
 			$this->db->where('user_id',$user_id);
 			$this->db->where('resource_id',$resource_id);
-			$this->db->delete($this->tables['accgrants']);
+			$this->db->delete($this->tables['grants']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -286,7 +286,7 @@ class Troll_auth_model extends CI_Model
 		try
 		{
 			$this->db->where('user_id',$user_id);
-			$this->db->delete($this->tables['accgrants']);
+			$this->db->delete($this->tables['grants']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -304,11 +304,11 @@ class Troll_auth_model extends CI_Model
 		try
 		{
 			$this->db->where('user_id',$user_id);
-			$this->db->delete($this->tables['accmember']);
+			$this->db->delete($this->tables['members']);
 			if ($this->enable_membership_backup)
 			{
 				$this->db->where('user_id',$user_id);
-				$this->db->delete('accmember_back');
+				$this->db->delete('members_back');
 			}
 			return TRUE;
 		} catch (Exception $err) {
@@ -330,7 +330,7 @@ class Troll_auth_model extends CI_Model
 		{
 			$this->db->where('resource_id',$resource_id);
 			$this->db->where('group_id',$group_id);
-			$this->db->delete($this->tables['accgrants']);
+			$this->db->delete($this->tables['grants']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -350,7 +350,7 @@ class Troll_auth_model extends CI_Model
 		{
 			$this->db->where('resource_id',$resource_id);
 			$this->db->where('user_id',-1); // if user_id = -1 it is a group access grant
-			$this->db->delete($this->tables['accgrants']);
+			$this->db->delete($this->tables['grants']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -368,13 +368,13 @@ class Troll_auth_model extends CI_Model
 
 		$this->db->where('user_id',$user_id);
 		$this->db->where('group_id',$group_id);
-		$this->db->delete($this->tables['accmember']);
+		$this->db->delete($this->tables['members']);
 
 		$data = array (
 			'user_id' => $user_id,
 			'group_id' => $group_id
 		);
-		$this->db->insert($this->tables['accmember'],$data);
+		$this->db->insert($this->tables['members'],$data);
 		
 	    if ($this->db->trans_status() === FALSE)
 	    {
@@ -399,7 +399,7 @@ class Troll_auth_model extends CI_Model
         if (empty($user_id) || empty($group_id)) return FALSE;
 		$this->db->where('user_id',$user_id);
 		$this->db->where('group_id',$group_id);
-		$this->db->from($this->tables['accmember']);
+		$this->db->from($this->tables['members']);
 		
         if ($this->db->count_all_results() > 0)
 		{
@@ -418,7 +418,7 @@ class Troll_auth_model extends CI_Model
     function get_group_name($group_id)
 	{
 		$this->db->where('group_id',$group_id);
-		return $this->db->get($this->tables['accgroups'])->row()->name;
+		return $this->db->get($this->tables['groups'])->row()->name;
     }
 
 
@@ -437,7 +437,7 @@ class Troll_auth_model extends CI_Model
 		{
 			$this->db->where('user_id',$user_id);
 			$this->db->where('group_id',$group_id);
-			$this->db->delete($this->tables['accmember']);
+			$this->db->delete($this->tables['members']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -456,12 +456,12 @@ class Troll_auth_model extends CI_Model
 	    $this->db->trans_begin();
 
 		$this->db->where('user_id',$user_id);
-		$this->db->delete($this->tables['accmember']);
+		$this->db->delete($this->tables['members']);
 
 		if ($this->enable_membership_backup)
 		{
 			$this->db->where('user_id',$user_id);
-			$this->db->delete($this->tables['accmember_back']);
+			$this->db->delete($this->tables['members_back']);
 		}
 
 		if ($this->db->trans_status() === FALSE)
@@ -487,7 +487,7 @@ class Troll_auth_model extends CI_Model
 		try
 		{
 			$this->db->where('group_id',$group_id);
-			$this->db->delete($this->tables['accmember']);
+			$this->db->delete($this->tables['members']);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -509,7 +509,7 @@ class Troll_auth_model extends CI_Model
 				'name' => $name,
 				'active' => $active,
 			);
-			$this->db->insert($this->tables['accgroups'],$data);
+			$this->db->insert($this->tables['groups'],$data);
 			return $this->db->insert_id();
 		} catch (Exception $err) {
 			return FALSE;
@@ -529,10 +529,10 @@ class Troll_auth_model extends CI_Model
 	    $this->db->trans_begin();
 
 		$this->db->where('group_id',$group_id);
-		$this->db->delete($this->tables['accgroups']);
+		$this->db->delete($this->tables['groups']);
 
 		$this->db->where('group_id',$group_id);
-		$this->db->delete($this->tables['accgrants']);
+		$this->db->delete($this->tables['grants']);
 
 		if ($this->db->trans_status() === FALSE)
 	    {
@@ -561,7 +561,7 @@ class Troll_auth_model extends CI_Model
 				'active' => 1
 			);
 			$this->db->where('group_id',$group_id);
-			$this->db->update($this->tables['accgroups'],$data);
+			$this->db->update($this->tables['groups'],$data);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -584,7 +584,7 @@ class Troll_auth_model extends CI_Model
 				'active' => 0
 			);
 			$this->db->where('group_id',$group_id);
-			$this->db->update($this->tables['accgroups'],$data);
+			$this->db->update($this->tables['groups'],$data);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -617,7 +617,7 @@ class Troll_auth_model extends CI_Model
 					'name' => $name
 				);
 				$this->db->where('group_id',$group_id);
-				$this->db->update($this->tables['accgroups'],$data);
+				$this->db->update($this->tables['groups'],$data);
 				return TRUE;
 			} catch (Exception $err) {
 				return FALSE;
@@ -625,6 +625,58 @@ class Troll_auth_model extends CI_Model
         }
     }
 
+	function get_groups()
+	{
+//		$menu_query = mysql_query("SELECT * FROM accgroups order by vchAccGrpName"); // TODO REMOVE THIS AFTER TEST
+	    return $this->db->get($this->tables['groups'])->order_by('name','asc')->result();
+	}
+
+	function get_group_member_count($group_id)
+	{
+//		$menu_query = mysql_query("select count(*) AS count from accmember where numaccgrpid=$numAccGrpId"); // TODO REMOVE THIS AFTER TEST
+	    return $this->db->count_all($this->tables['members'])->where('group_id',$group_id)->result();
+	}
+
+	/**
+	 * Returns list of resources that the group has access to. It also returns the access level for each grant
+	 *
+	 * @param int group_id
+	 * @return .... resource_id, resource_name, access_level
+	 * @author Claus Paludan
+	 */
+	function get_group_access_grants($group_id) //TODO CONVERT TO CI AND RETURN RESULT
+	{
+		$sql = "SELECT res.id,res.name,grants.access_level";
+		$sql .= " FROM accresources res,accgrants grants";
+		$sql .= " WHERE res.id=grants.group_id AND grants.group_id=$group_id";
+		$sql .= " ORDER BY res.name";
+	}
+
+	/**
+	 * Returns list of resources not yet granted to group
+	 *
+	 * @param int group_id
+	 * @return .... resource_id, resource_name
+	 * @author Claus Paludan
+	 */
+	function get_group_access_grants_available($group_id) //TODO CONVERT TO CI AND RETURN RESULT
+	{
+		$sql = "SELECT distinct res.id,res.name";
+		$sql .= " FROM accresources res";
+		$sql .= " WHERE res.id NOT IN (SELECT DISTINCT resource_id FROM accgrants accg WHERE accg.group_id=$group_id)";
+		$sql .= " ORDER BY res.name";
+
+	}
+
+
+
+	
+	/**
+	 * RESOURCE FUNCTIONS
+	 */
+	 /**
+	  * Lists resources that
+	  */
 
     /**
 	 * Add a resource
@@ -640,7 +692,7 @@ class Troll_auth_model extends CI_Model
 				'name' => $name,
 				'active' => $active
 			);
-			$this->db->insert($this->tables['accresources'],$data);
+			$this->db->insert($this->tables['resources'],$data);
 			return $this->db->insert_id();
 		} catch (Exception $err) {
 			return FALSE;
@@ -661,10 +713,10 @@ class Troll_auth_model extends CI_Model
 	    $this->db->trans_begin();
 
 		$this->db->where('resource_id',$resource_id);
-		$this->db->delete($this->tables['accresources']);
+		$this->db->delete($this->tables['resources']);
 
 		$this->db->where('resource_id',$resource_id);
-		$this->db->delete($this->tables['accgrants']);
+		$this->db->delete($this->tables['grants']);
 
 		if ($this->db->trans_status() === FALSE)
 	    {
@@ -691,7 +743,7 @@ class Troll_auth_model extends CI_Model
 				'active' => $active
 			);
 			$this->db->where('resource_id',$resource_id);
-			$this->db->update($this->tables['accresources'],$data);
+			$this->db->update($this->tables['resources'],$data);
 			return TRUE;
 		} catch (Exception $err) {
 			return FALSE;
@@ -710,7 +762,7 @@ class Troll_auth_model extends CI_Model
 	    $this->db->trans_begin();
 
 		$this->db->where('user_id',$user_id);
-		$query = $this->db->get($this->tables['accmember']);
+		$query = $this->db->get($this->tables['members']);
 
 		foreach ($query->result() as $row)
 		{
@@ -718,11 +770,11 @@ class Troll_auth_model extends CI_Model
 				'user_id' => $row->user_id,
 				'group_id' => $row->group_id
 			);
-			$this->db->insert($this->tables['accmember_back'],$data);
+			$this->db->insert($this->tables['members_back'],$data);
 		}
 //        $sql = "delete from accmember where numUserId=$userid AND numAccGrpId != 67 AND numAccGrpId != 81 AND numAccGrpId !=72 AND numAccGrpId != 63"; // Man kan ikke fjernes fra vampyr, yngling, bajar eller Effe
 		$this->db->where('user_id',$user_id);
-		$this->db->delete('accmember');
+		$this->db->delete('members');
 		if ($this->db->trans_status() === FALSE)
 	    {
 			$this->db->trans_rollback();
@@ -747,7 +799,7 @@ class Troll_auth_model extends CI_Model
 	    $this->db->trans_begin();
 
 		$this->db->where('user_id',$user_id);
-		$query = $this->db->get($this->tables['accmember_back']);
+		$query = $this->db->get($this->tables['members_back']);
 
 		foreach ($query->result() as $row)
 		{
@@ -755,7 +807,7 @@ class Troll_auth_model extends CI_Model
 				'user_id' => $row->user_id,
 				'group_id' => $row->group_id
 			);
-			$this->db->insert($this->tables['accmember'],$data);
+			$this->db->insert($this->tables['members'],$data);
 			if ($this->db->_error_number() == 1062)
 			{
 				
@@ -764,7 +816,7 @@ class Troll_auth_model extends CI_Model
 //                $sql = "delete from accmember_back where numUserId=$userid";
 
 		$this->db->where('user_id',$user_id);
-		$this->db->delete($this->tables['accmember_back']);
+		$this->db->delete($this->tables['members_back']);
 		if ($this->db->trans_status() === FALSE)
 	    {
 			$this->db->trans_rollback();

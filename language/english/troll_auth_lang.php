@@ -13,6 +13,13 @@
 * 
 */
 
+// Access levels
+$lang['NO_ACCESS']							= 'No access';
+$lang['READ']								= 'Read';
+$lang['WRITE']								= 'write';
+$lang['READWRITE']							= 'Read/Write';
+
+
 // Account Creation
 $lang['group_creation_successful']			= 'Group successfully created';
 $lang['group_creation_unsuccessful']		= 'Unable to create group';
