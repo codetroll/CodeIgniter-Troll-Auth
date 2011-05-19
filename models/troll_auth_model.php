@@ -667,8 +667,18 @@ class Troll_auth_model extends CI_Model
 		$sql .= " ORDER BY res.name";
 
 	}
+	/**
+	 * Returns a list of members of group
+	 *
+	 * @param int group_id
+	 * @return list of users
+	 * @author Claus Paludan
+	 */
+	function get_group_members($group_id)
+	{
+		$member_query = mysql_query("SELECT usr.numUserId,usr.vchUserName FROM tbluser usr,accmember member WHERE usr.numUserId=member.numUserId AND numAccGrpId=$groupid ORDER BY usr.vchUserName");
 
-
+	}
 
 	
 	/**
