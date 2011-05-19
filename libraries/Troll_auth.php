@@ -107,7 +107,7 @@ class Troll_auth
 	}
 
 	/**
-	 * Returns true if group has write access to the resource .
+	 * Returns true if group has read access to the resource .
 	 * If no read access can be found false is returned.
 	 *
 	 * @param int $resource_id

@@ -40,7 +40,6 @@ CREATE TABLE `accgroups` (
   `id` int(9) NOT NULL auto_increment,
   `name` varchar(100) collate utf8_danish_ci NOT NULL,
   `active` tinyint(1) NOT NULL default '1',
-  `watch` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=1 ;
 
