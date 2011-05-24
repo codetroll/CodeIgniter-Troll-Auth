@@ -22,6 +22,7 @@ class Troll_auth extends Controller {
 		//set the flash data error message if there is one
 		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
+		echo $this->get_included_files();
 		//list the users
 		$this->data['users'] = $this->ion_auth->get_users_array();
 		$this->load->view('troll_auth/index', $this->data);
