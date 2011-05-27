@@ -23,7 +23,7 @@ CREATE TABLE `accgrants` (
   `access_level` tinyint(2) NOT NULL default '0',
   KEY `user_id` (`group_id`),
   KEY `resource_id` (`resource_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+);
 
 -- 
 -- Dumping data for table `accgrants`
@@ -38,10 +38,11 @@ CREATE TABLE `accgrants` (
 
 CREATE TABLE `accgroups` (
   `id` int(9) NOT NULL auto_increment,
-  `name` varchar(100) collate utf8_danish_ci NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL,
   `active` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=1 ;
+);
 
 -- 
 -- Dumping data for table `accgroups`
@@ -57,9 +58,8 @@ CREATE TABLE `accgroups` (
 CREATE TABLE `accmember` (
   `user_id` int(9) NOT NULL default '0',
   `group_id` int(9) NOT NULL default '0',
-  UNIQUE KEY `LiegeVassalCombo` (`user_id`,`group_id`),
   KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+);
 
 -- 
 -- Dumping data for table `accmember`
@@ -76,9 +76,8 @@ INSERT INTO `accmember` VALUES (1, 1);
 CREATE TABLE `accmember_back` (
   `user_id` int(9) NOT NULL default '0',
   `group_id` int(9) NOT NULL default '0',
-  UNIQUE KEY `LiegeVassalCombo` (`user_id`,`group_id`),
-  KEY `group_id` (`numAccGrpId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+  KEY `group_id` (`_`)
+);
 
 -- 
 -- Dumping data for table `accmember_back`
@@ -93,10 +92,10 @@ CREATE TABLE `accmember_back` (
 
 CREATE TABLE `accresources` (
   `id` int(9) NOT NULL auto_increment,
-  `name` varchar(100) collate utf8_danish_ci NOT NULL,
+  `name` varchar(100) NOT NULL,
   `active` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci PACK_KEYS=0 AUTO_INCREMENT=1 ;
+);
 
 -- 
 -- Dumping data for table `accresources`
