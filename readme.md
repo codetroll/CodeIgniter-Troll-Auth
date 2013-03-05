@@ -2,8 +2,9 @@
 
 Somewhat Simple and Lightweight Authorisation System, slightly based on ion-auth (although they perform very different tasks)
 
+<!---
 [Official Website & Documentation](http://laravel.com)
-
+-->
 ## Introduction
 
 I have been looking around for an authorisation system for codeigniter, but so far I seem to have only been able to find authentication systems.
